@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: tutor_bot_test
+      POSTGRES_USER: tutor_bot
+      POSTGRES_PASSWORD: tutor_bot_test
+    ports:
+      - "55432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tutor_bot -d tutor_bot_test"]
+      interval: 2s
+      timeout: 2s
+      retries: 20
+

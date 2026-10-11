@@ -1,0 +1,27 @@
+[Unit]
+Description=Korepetycje CRM (Oracle Cloud)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/korepetycje-telegram-crm
+EnvironmentFile=/home/ubuntu/korepetycje-telegram-crm/.env
+ExecStart=/home/ubuntu/korepetycje-telegram-crm/.venv/bin/python -m app.launcher
+Restart=always
+RestartSec=10
+TimeoutStopSec=20
+UMask=0077
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectControlGroups=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallArchitectures=native
+
+[Install]
+WantedBy=multi-user.target
