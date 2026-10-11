@@ -512,7 +512,7 @@ async def test_migrations_keep_private_schema_behind_rls() -> None:
             )
         )
     await engine.dispose()
-    subprocess.run([str(root / ".venv/bin/alembic"), "upgrade", "head"], cwd=root, env=env, check=True)
+    subprocess.run([sys.executable, "-m", "alembic", "upgrade", "head"], cwd=root, env=env, check=True)
 
     engine = create_async_engine(TEST_DATABASE_URL)
     await check_database(engine)
