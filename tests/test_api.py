@@ -6,6 +6,7 @@ import hmac
 import json
 import os
 import subprocess
+import sys
 import time
 from datetime import UTC, datetime
 from pathlib import Path
@@ -473,7 +474,7 @@ async def test_migrations_keep_private_schema_behind_rls() -> None:
         "MIGRATION_DATABASE_URL": TEST_DATABASE_URL,
     }
     subprocess.run(
-        [str(root / ".venv/bin/alembic"), "upgrade", "0008_payment_submission_details"],
+        [sys.executable, "-m", "alembic", "upgrade", "0008_payment_submission_details"],
         cwd=root,
         env=env,
         check=True,
