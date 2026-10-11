@@ -576,7 +576,7 @@ async def test_migrations_keep_private_schema_behind_rls() -> None:
     ]
 
     subprocess.run(
-        [str(root / ".venv/bin/alembic"), "downgrade", "0007_idempotency_guards"],
+        [sys.executable, "-m", "alembic", "downgrade", "0007_idempotency_guards"],
         cwd=root,
         env=env,
         check=True,
